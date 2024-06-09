@@ -12,6 +12,6 @@ If you plan to install the C# module, you will need:
 
 :::info
 
-The standard version for the C# module is [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0), for higher versions the `AltV.Net.Host.runtimeconfig.json` must be modified.
+The default version for the C# module is [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0), for higher versions the `AltV.Net.Host.runtimeconfig.json` must be modified.
 
 :::
