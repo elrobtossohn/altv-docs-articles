@@ -53,18 +53,19 @@ We greatly appreciate contributions to the alt:V project, and there are multiple
 - Financial Support: Consider supporting us financially on [Patreon](https://www.patreon.com/altVMP), where you can become a patron and contribute to the ongoing development and maintenance of alt:V.
 We value and appreciate contributions in any form, be it code contributions, community involvement, or financial support. Thank you for your interest in contributing to alt:V!
 
-### How can I get a token for the masterlist?
+### How can I get a token for the Master List?
 
 :::info
 
-During the development stage of your server, you don't need a token.
-Tokens are only required if your server is in the release branch and you want it to be listed on the masterlist.
+During the development stage of your server, you don't need a token.<br/>
+Tokens are only required if your server is running on the release branch and you want to display it in the master list.<br/>
+Unless you want to implement or use the Cloud Auth feature.
 
 :::
 
-To obtain a token, you can send a message with the word "token" to the alt:V Master-Bot on Discord (username: Master-Bot#3667). There are two requirements to obtain a token:
+To obtain a token, please follow these steps:
 
-- Wait for a minimum of 30 days, and a token will be automatically generated for you.
-- Alternatively, you can subscribe as a Bronze [Patreon](https://www.patreon.com/altVMP) to generate a token immediately.
+1. Log in to the [Server Manager](https://my.alt-mp.com/).
+2. Create a new server where you will be able to acquire your token.
 
-Either fulfilling the 30-day waiting period or becoming a Bronze Patreon subscriber will allow you to obtain a token for the masterlist.
+To unlock additional benefits for your server, make sure to link your Discord account with Patreon and subscribe to a [Patreon tier](https://www.patreon.com/altVMP).
