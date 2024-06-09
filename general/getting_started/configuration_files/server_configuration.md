@@ -63,6 +63,22 @@ announceRetryErrorAttempts = 50
 # Max players which can connect with the same ip address
 duplicatePlayers = 4096
 
+# Enable or disable syncedMetadata
+enableSyncedMetaData = true
+
+# Key for shared resources. Can be used to share resources between multiple servers, so users don't have to download them separatedly
+sharedProjectKey = "altv-shared"
+# Display name for shared resources bundle (visible in alt:V client settings)
+sharedProjectName = "alt:V shared"
+
+# Max size of client to server script events in bytes
+maxClientScriptEventSize = 8192
+# Max size of server to client script events in bytes
+maxServerScriptEventSize = 524288
+
+#When false unknown rpc events will result in a kick
+allowUnknownRPCEvents = true
+
 # Define the map bound size
 mapBoundsMinX = -10000
 mapBoundsMinY = -10000
@@ -74,7 +90,7 @@ mapCellAreaSize = 100 #smaller areas uses more ram and less cpu
 colShapeTickRate = 200
 
 # Defines the used logging streams (console, file, stdconsole) for the server
-logStreams = ["console", "file"]
+logStreams = [ "console", "file" ]
 
 # The tags for your server (max. 4)
 tags = [
@@ -92,7 +108,8 @@ earlyAuthUrl = "https://example.com/login"
 # Should a CDN be used for your server
 useCdn = false
 # The url for the CDN page
-cdnUrl = "https://cdn.example.com"
+# Outdated Notation: "https://cdn.example.com"
+cdnUrl = "cdn.example.com:443"
 
 # Should alt:V server send all clients player name on connect
 sendPlayerNames = true
@@ -116,28 +133,52 @@ modules = [
     "csharp-module"
 ]
 
-# Enable only specific dlc packs
-dlc-whitelist = [
+# If dlcWhitelist contains any dlcs, it will only enable these specific game DLCs. Useful when you want to maintain a list of 'supported' DLCs on your server because of game limits, ID shifts, etc. Below defined setting would make sure to only load the mpBeach, mpBusiness and patchday27ng R* dlc contents
+# See complete DLC list at go.altv.mp/dlc-list 
+dlcWhitelist = [
     "mpBeach",
     "mpBusiness",
     "patchday27ng"
 ]
 
-# Obfuscate ressource names
+# Obfuscate resource names
 hashClientResourceName = true
 
-# extend gta pool sizes
+# Disables creation of props marked as "optional"
+disableOptionalProps = false
+
+# The amount of server side managed entities per type that can be streamed at the same time per player. If more than the set amount of entities are in streaming range, the closest n entities (as defined below) of the specific type will be streamed. Changing these values can cause performance and stability issues.
+[maxStreaming]
+peds = 128 # Max 220, shared type for server side created NPC peds + player peds
+objects = 120 # Max 120, server side created objects
+vehicles = 128  # Max 220, server side created vehicles
+entities = 128 # Defined the max limit of entities, indepent of type, that can be streamed at the same time
+
+# Configure GTA game pool sizes to extend them. These game pools define the limits of certain aspects in the game, extending them can and will cause stability and performance issues. Please test changes carefully.
+# See this article for a complete list of game pools: https://docs.altv.mp/gta/articles/tutorials/overwrite_gameconfig.html
 [pools]
-"DrawableStore" = 240420
+"DrawableStore" = 240420 # Example of raised DrawableStore pool
 
 # Profiling entity creation, systems like streaming etc
 [worldProfiler]
 port = 7797
 host = "0.0.0.0"
 
+# Configure the amount of threads used for different kind of processing in the alt:V server. You should in total never configure more threads than your server hardware has threads. 
+# For example, when your hardware has 12 threads, use 8 for sync send, 2 for receive and all other at 1.
 [threads]
-streamer = 1
-migration = 1
+streamer = 1 # Processing of streamed entities
+migration = 1 # Processing of netowner calculations
+syncSend = 8 # Processing of sending sync data, should be always the highest amount
+syncReceive = 2 # Processing of receiving sync data, should be around 1/4 of syncSend
+
+[antiCheat]
+# Enables server-side weapon checks
+# For example, if a weapon is given via giveWeaponToPed native it won't be synced
+weaponSwitch = true
+
+# Enables collision checks so natives like setEntityNoCollisionEntity will not work
+collision = true
 
 # Settings related to js-module
 [js-module]
@@ -152,18 +193,15 @@ global-webcrypto = true
 # "https://nodejs.org/api/cli.html#--experimental-network-imports"
 network-imports = true
 # Add extra cli arguments to the node environment "https://nodejs.org/api/cli.html"
-extra-cli-args = ["--inspect=127.0.0.1:9229", "--max-old-space-size=8192"]
-# Enable node.js inspector
-[js-module.inspector]
-host = "127.0.0.1"
-port = 9229
+extra-cli-args = ["--max-old-space-size=8192"]
 
 # Settings related to c#-module
 [csharp-module]
 # Disable dependency (NuGet) check and download at server startup, this is recommended if you have a bad connection to the NuGet server (e.g china)
 disableDependencyDownload = true
 
-# Voice configuration (needs to be set to enable voice chat)
+# Voice configuration (category needs atleast to exist in configuration, to enable voice chat)
+# See this article for more info: https://docs.altv.mp/articles/voice.html
 [voice]
 # The bitrate of the voice server
 bitrate = 64000
