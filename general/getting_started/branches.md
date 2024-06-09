@@ -26,7 +26,7 @@ Once the changes are complete, they can be merged back into the main project.
 
 To change the branch of your server, follow these steps:
 
-1. Visit the [alt:V download page](https://altv.mp/#/downloads)
+1. Visit the [Downloads page](https://altv.mp/downloads)
 2. Select the appropriate branch from the available options
 3. Make sure you checked the "Data files" and the module checkboxes
 4. Download the files and extract them into your server directory, overwriting the existing files
