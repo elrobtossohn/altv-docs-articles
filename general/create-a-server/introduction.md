@@ -9,7 +9,7 @@ If you have any questions or other concerns, please search in the documentation 
 
 ## FAQ
 
-### What are the minimum requirements?
+### Which server specifications should I meet?
 
 According to some statistics, these requirements are best suited for up to 100 players:
 - CPU 3.2ghz
