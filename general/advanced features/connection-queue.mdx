@@ -1,0 +1,133 @@
+---
+title: Connection queue
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<span class="badge badge--secondary">This feature were added in version alt:V v9</span>
+
+<p>This article describes roughly how the connection queue can be used.</p>
+
+### What is a connection queue?
+
+The connection queue can be used to process a larger number of players one after the other.
+The data can thus be loaded asynchronously for a player and as soon as it is available, the connection can be accepted or declined.
+
+An example of how to use the connection queue can be found below.
+
+## Usage
+
+### Preconfiguration of the server
+
+In order for the connection queue to be used, the following entry must be added or changed in server.toml:
+
+```toml
+connectionQueue = true
+```
+
+As soon as this has been enabled in the config, every connection must be accepted via the [connectionQueueAdd](/api/jsv2/dev/server/interface/IServerEvent#connectionQueueAdd) event.
+
+### Queue events
+
+| Event Name                                                                                 | Description                                                        |
+|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| [connectionQueueAdd](/api/jsv2/dev/server/interface/IServerEvent#connectionQueueAdd)       | Event triggered once a player is added to the connection queue     |
+| [connectionQueueRemove](/api/jsv2/dev/server/interface/IServerEvent#connectionQueueRemove) | Event triggered once a player is removed from the connection queue |
+
+### Connection Info
+
+| Function Name                                                                            | Description                                                          |
+|------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| [connectionInfo.accept()](/api/jsv2/dev/server/interface/IConnectionInfo#accept)         | Accept the player connection to the server.                          |
+| [connectionInfo.decline(reason)](/api/jsv2/dev/server/interface/IConnectionInfo#decline) | Decline the player connection to the server with an optional reason. |
+
+#### Properties
+
+The properties can be viewed [here](/api/jsv2/dev/server/class/ConnectionInfo)
+
+### Example usage
+
+<Tabs>
+<TabItem value="javascript" label="JavaScript">
+
+```javascript
+async function getDataFromDatabase() {
+    return new Promise(resolve => setTimeout(resolve(true), 5000));
+}
+
+async function processPlayerInQueue(connectionInfo) {
+    if (await getDataFromDatabase());
+        connectionInfo.accept();
+}
+
+alt.on('connectionQueueAdd', processPlayerInQueue);
+alt.on('connectionQueueRemove', (connectionInfo) => {
+    console.log("Player removed from the queue, even if I accept the connection now it's handled!");
+});
+```
+
+</TabItem>
+<TabItem value="typescript" label="TypeScript">
+
+```typescript
+async function getDataFromDatabase(): Promise<true> {
+    return new Promise(resolve => setTimeout(resolve(true), 5000));
+}
+
+async function processPlayerInQueue(connectionInfo: alt.ConnectionInfo): Promise<void> {
+    if (await getDataFromDatabase());
+        connectionInfo.accept();
+}
+
+alt.on('connectionQueueAdd', processPlayerInQueue);
+alt.on('connectionQueueRemove', (connectionInfo: alt.ConnectionInfo) => {
+    console.log("Player removed from the queue, even if I accept the connection now it's handled!");
+});
+```
+
+</TabItem>
+<TabItem value="csharp" label="C#">
+
+```csharp
+using AltV.Net.Async;
+using AltV.Net.Types;
+
+namespace Example
+{
+    class ExampleResource : AsyncResource
+    {
+        private async Task<bool> GetDataFromDatabase()
+        {
+            await Task.Delay(5000);
+            return true;
+        }
+
+        private async Task OnConnectionQueueAdd(IConnectionInfo connectionInfo)
+        {
+            if (await this.GetDataFromDatabase())
+                connectionInfo.Accept();
+        }
+
+        private Task OnConnectionQueueRemove(IConnectionInfo _)
+        {
+            Console.WriteLine("Player removed from the queue, even if I accept the connection now it's handled!");
+            return Task.CompletedTask;
+        }
+
+        public override void OnStart()
+        {
+            AltAsync.OnConnectionQueueAdd += this.OnConnectionQueueAdd;
+            AltAsync.OnConnectionQueueRemove += this.OnConnectionQueueRemove;
+        }
+
+        public override void OnStop()
+        {
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
