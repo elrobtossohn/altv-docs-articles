@@ -22,7 +22,7 @@ debug = true
 
 Debug mode is activated after a restart of the server or client.
 
-:::warning
+:::tip Reminder
 
 Debug mode should not be activated on a production server.
 
