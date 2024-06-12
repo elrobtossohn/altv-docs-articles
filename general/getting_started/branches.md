@@ -48,3 +48,9 @@ To change the branch of your client, follow the instructions below:
 4. Update the value of the "branch" key with the corresponding branch name from the table above
 5. Save the alt.toml file
 6. Start alt:V
+
+:::info
+
+The client can only connect to servers which are on the same branch.
+
+:::
