@@ -1,0 +1,54 @@
+---
+title: Mods folder
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<span class="badge badge--secondary">This feature were added in version 16.0</span>
+
+In alt:V 16 we introduced the mods folder for mods such as [Reshade](https://reshade.me) and [ENB](http://enbdev.com/download_mod_gta5.htm).<br/>
+RPF files do **not** belong in this folder but still in the Grand Theft Auto V installation folder.
+
+:::warning Support
+
+We do offer to run some modifications in this folder, but we do **not** offer support for them.
+If your game crashes or you have other problems, you will have to fix them yourself.
+
+:::
+
+:::info
+
+Modifications can be automatically deactivated by alt:V during recurring crashes or stress tests for stability.
+
+:::
+
+## Usage
+
+### Enable support for the Mods folder
+
+In order for the mods to be loaded from the mods folder, it must first be activated.
+Follow the steps below or [click here](altv://action/setcfg?enableModDirectory=true):
+
+1. Navigate to your alt:V directory
+2. Open the `altv.toml` file with a text editor
+3. Look for a line which starts with `enableModDirectory`
+   1. If it exists, change its value to `true`
+   2. If it doesn't exist, add `enableModDirectory = true` at the bottom of the file
+4. Save the changes to the `altv.toml` file
+
+### Adding mods
+
+To add new mods simply put their files into the mods folder. You can open this by clicking [here](altv://action/open/mods) or navigating to your alt:V directory and then the `mods` directory. If the directory doesn't exist, create it yourself.
+
+Place the mod and it's related files (e.g. `*.dll`, `*.ini`, `*.fx` and other relevant files) into the mods folder.
+Remind that RPF files don't belong into this directory, see next step.
+
+:::caution Minimum versions
+
+At least the following version must be used for the following modifications:
+* **Reshade**: 5.9.1
+* **ENB**: 0.492
+
+:::
