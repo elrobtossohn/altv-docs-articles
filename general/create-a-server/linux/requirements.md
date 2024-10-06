@@ -9,10 +9,10 @@ To install an alt:V server on Linux, the following minimum requirements should b
 - libatomic1 (For most systems: `apt install libatomic1`)
 
 If you plan to install the C# module, you will need:
-- Latest [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0). ([.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) is also supported)
+- Latest [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0). ([.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) is also supported)
 
 :::info
 
-The standard version for the C# module is [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0), for higher versions the `AltV.Net.Host.runtimeconfig.json` must be modified.
+The standard version for the C# module is [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0), for higher versions the `AltV.Net.Host.runtimeconfig.json` must be modified.
 
 :::
