@@ -5,7 +5,7 @@ sidebar_position: 1
 # Introduction
 In this article we will go into more detail on how to create an alt:V server.
 
-If you have any questions or other concerns, please search in the documentation or ask in our [Discord](https://discord.gg/yQvKgSs).
+If you have any questions or other concerns, please search in the documentation or ask in our [Discord](https://discord.gg/altv).
 
 ## FAQ
 
@@ -38,3 +38,23 @@ These are facts and similarities seen across all servers.
 - The average mid-tier server has RAM usage less than 1.25GB.
 - The average mid-tier server has around 8 cores.
 - The average mid-tier server is clocked at 3.7ghz
+
+
+
+### Worker ports
+
+We recommend activating this feature with a player count of 500, as it serves as a "load balancer".
+
+You can easily activate this feature by making the following entry in the [server.toml](../getting_started/configuration_files/server_configuration.md):
+```toml
+worker-ports = [7789, 7790]
+```
+
+#### When do you recommend using it?
+We have created a simple formula, add an extra port for every 500 players. This means
+500+ players: two worker ports
+1000+ players: three worker ports
+1500+ players: four worker ports
+
+#### Does this affect my network infrastructure?
+Yes, this change may affect your DDOS protection, you should check with your provider. The additional ports only require UDP, the default port still requires TCP.
