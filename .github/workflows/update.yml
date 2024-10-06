@@ -3,7 +3,6 @@ name: Trigger docs update
 on:
   push:
     branches:
-      - 'dev'
       - 'rc'
       - 'release'
 
