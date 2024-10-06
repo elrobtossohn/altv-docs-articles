@@ -13,12 +13,12 @@ Once the changes are complete, they can be merged back into the main project.
 
 ## Overview
 
-| Name                   | Description                                                                                                                                                                                                                                                                                                    | Icon color | Configuration entry |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|---------------------|
-| Release                | This branch is for stable production releases. It is considered the most reliable and is the only branch where the masterlist is available. If you run a public server, it should use this branch.                                                                                                             | Green      | `release`           |
-| Release Candidate (rc) | The release candidate branch is used for upcoming updates. Changes that will be included in the release branch are tested here first. It is mostly stable, and any remaining bugs are addressed before merging to the release branch. Public servers should test their script on this branch prior to updates. | Orange     | `rc`                |
-| Development (dev)      | The development branch contains the latest features, sometimes still under development. Not all features from this branch will be moved to the other branches. It may contain bugs and unfinished features, and the feature set is subject to change.                                                          | Blue       | `dev`               |
-| Internal & QA          | These branches are reserved for internal use by developers and Alt:V team members. They are not publicly accessible.                                                                                                                                                                                           | Purple     | Not available       |
+| Name                   | Description                                                                                                                                                                                                                                                                                                    | Accessible            | Icon color | Configuration entry |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|------------|---------------------|
+| Release                | This branch is for stable production releases. It is considered the most reliable and is the only branch where the masterlist is available. If you run a public server, it should use this branch.                                                                                                             | Yes                   | Green      | `release`           |
+| Release Candidate (rc) | The release candidate branch is used for upcoming updates. Changes that will be included in the release branch are tested here first. It is mostly stable, and any remaining bugs are addressed before merging to the release branch. Public servers should test their script on this branch prior to updates. | Yes                   | Orange     | `rc`                |
+| Development (dev)      | The development branch contains the latest features, sometimes still under development. Not all features from this branch will be moved to the other branches. It may contain bugs and unfinished features, and the feature set is subject to change.                                                          | Only when whitelisted | Blue       | `dev`               |
+| Internal & QA          | These branches are reserved for internal use by developers and Alt:V team members. They are not publicly accessible.                                                                                                                                                                                           | No                    | Purple     | Not available       |
 
 ## How to change the branch
 
@@ -30,13 +30,6 @@ To change the branch of your server, follow these steps:
 2. Select the appropriate branch from the available options
 3. Make sure you checked the "Data files" and the module checkboxes
 4. Download the files and extract them into your server directory, overwriting the existing files
-
-:::caution Dev branch
-
-If you are utilizing the dev branch, it is possible that some modules are outdated.
-In such cases, it is recommended to retry at a later time.
-
-:::
 
 ### Client
 
