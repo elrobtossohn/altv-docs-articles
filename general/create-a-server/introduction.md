@@ -25,7 +25,7 @@ These requirements vary depending on the performance of the scripts and upcoming
 
 ### Which ports are used?
 
-By default alt:V uses port 7788 (TCP & UDP) if no [CDN](~/articles/cdn.md) is used.<br/>
+By default alt:V uses port 7788 (TCP & UDP) if no [CDN](../../utilities/cdn_links.mdx) is used.<br/>
 If you are using a CDN, only UDP is used.
 The port can be changed in the [server.toml](../getting_started/configuration_files/server_configuration.md).
 
