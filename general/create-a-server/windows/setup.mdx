@@ -3,6 +3,9 @@ title: Setup
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ### Before installation
 
 Before we can really get started, you should create a user.  
@@ -21,25 +24,52 @@ We use `C:/ALTV-SERVER` as the directory, but you are free to choose your own di
 
 Create and go to the `C:/ALTV-SERVER` directory
 
-### Download (Using altv-pkg)
+### Download
 
-Visit the [alt:V Downloads page](https://altv.mp/downloads/) and scroll down to the server selection.  
-Select `altv-pkg` in the tab and follow the instructions.
-
-### Download & Upload (Using FTP)
+<Tabs>
+<TabItem value="yourself" label="Yourself">
 
 Visit the [alt:V Downloads page](https://altv.mp/downloads/) and scroll down to the server selection.
 
 1. Select **Windows x64** under `Server OS`.
-2. Under Modules you can now select everything you need.  
+2. Under Modules you can now select everything you need.
    2.1 You do not have to select all modules, as a beginner we recommend the **JS Module** (JavaScript Module).
-3. Select `Data files` and `Sample server config`.  
+3. Select `Data files` and `Sample server config`.
    3.1 The item “Example resource pack” is not relevant.
 4. Click on **Download Server** to download the Server.
 
 #### Unpack
 1. Open the downloaded archive. (`altv-server.zip`)
 2. Unpack the `altv-server.zip` archive with WinRAR or 7-ZIP.
+
+</TabItem>
+<TabItem value="altv-pkg" label="altv-pkg">
+
+Here is an example of how you can download an alt:V server with [altv-pkg](https://github.com/altmp/altv-pkg).
+With this tool you can also keep all files up-to-date without having to download the files yourself.
+
+1. Install the latest version of [Node.js](https://nodejs.org/)
+2. Create the file `.altvpkgrc.json` in the `C:/ALTV-SERVER` directory
+    The content should look like this:
+    ```json
+    {
+        "loadJSModule": true,
+        "loadBytecodeModule": false,
+        "loadCSharpModule": false,
+        "loadJSV2Module": false,
+        "loadVoiceServer": false
+    }
+    ```
+3. Open an terminal in the desired folder and use the following command:
+    ```
+    npx altv-pkg release
+    ```
+
+
+You may also read the README file in the [altv-pkg Repository](https://github.com/altmp/altv-pkg).
+
+</TabItem>
+</Tabs>
 
 ### Start the server
 
